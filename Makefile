@@ -13,6 +13,6 @@ connect-db:
 	@psql "postgresql://plural:plural@localhost:5432/chain"
 .PHONY: start-docker-test
 
-SCHEMADIR = ./database/schema
+SCHEMADIR = ./schema
 deploy-schema: 
 	@for f in $(shell ls ${SCHEMADIR}); do psql "postgresql://plural:plural@localhost:5432/chain" -f ${SCHEMADIR}/$${f}; done

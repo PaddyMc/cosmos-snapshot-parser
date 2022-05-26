@@ -66,7 +66,7 @@ func SaveAccountsDB(db *sql.DB, paramsNumber int, accounts []types.AccountI) err
 	_, err := db.Exec(stmt, params...)
 	if err != nil {
 		panic(err)
-		return fmt.Errorf("error while storing accounts: %s", err)
+		//return fmt.Errorf("error while storing accounts: %s", err)
 	}
 
 	return nil
