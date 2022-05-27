@@ -52,6 +52,7 @@ CREATE TABLE validator_voting_power
 );
 CREATE INDEX validator_voting_power_height_index ON validator_voting_power (height);
 
+/*
 CREATE TABLE validator_status
 (
     validator_address TEXT    NOT NULL REFERENCES validator (consensus_address) PRIMARY KEY,
@@ -62,12 +63,14 @@ CREATE TABLE validator_status
 );
 CREATE INDEX validator_status_height_index ON validator_status (height);
 
+*/
 /* ---- DOUBLE SIGN EVIDENCE ---- */
 
 /*
  * This holds the votes that is the evidence of a double sign.
  * It should be updated on a BLOCK basis when a double sign occurs.
  */
+/*
 CREATE TABLE double_sign_vote
 (
     id                SERIAL PRIMARY KEY,
@@ -82,11 +85,13 @@ CREATE TABLE double_sign_vote
 );
 CREATE INDEX double_sign_vote_validator_address_index ON double_sign_vote (validator_address);
 CREATE INDEX double_sign_vote_height_index ON double_sign_vote (height);
+*/
 
 /*
  * This holds the double sign evidences.
  * It should be updated on a on BLOCK basis.
  */
+/*
 CREATE TABLE double_sign_evidence
 (
     height    BIGINT NOT NULL,
@@ -94,3 +99,5 @@ CREATE TABLE double_sign_evidence
     vote_b_id BIGINT NOT NULL REFERENCES double_sign_vote (id)
 );
 CREATE INDEX double_sign_evidence_height_index ON double_sign_evidence (height);
+
+*/

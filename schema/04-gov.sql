@@ -1,3 +1,4 @@
+/*
 CREATE TABLE gov_params
 (
     one_row_id     BOOLEAN NOT NULL DEFAULT TRUE PRIMARY KEY,
@@ -85,3 +86,4 @@ CREATE TABLE proposal_validator_status_snapshot
 );
 CREATE INDEX proposal_validator_status_snapshot_proposal_id_index ON proposal_validator_status_snapshot (proposal_id);
 CREATE INDEX proposal_validator_status_snapshot_validator_address_index ON proposal_validator_status_snapshot (validator_address);
+*/

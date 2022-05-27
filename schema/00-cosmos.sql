@@ -3,7 +3,7 @@ CREATE TABLE validator
     consensus_address TEXT NOT NULL PRIMARY KEY, /* Validator consensus address */
     consensus_pubkey  TEXT NOT NULL UNIQUE /* Validator consensus public key */
 );
-
+/*
 CREATE TABLE pre_commit
 (
     validator_address TEXT                        NOT NULL REFERENCES validator (consensus_address),
@@ -15,7 +15,7 @@ CREATE TABLE pre_commit
 );
 CREATE INDEX pre_commit_validator_address_index ON pre_commit (validator_address);
 CREATE INDEX pre_commit_height_index ON pre_commit (height);
-
+*/
 CREATE TABLE block
 (
     height           BIGINT UNIQUE PRIMARY KEY,

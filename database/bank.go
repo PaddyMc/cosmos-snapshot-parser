@@ -18,7 +18,6 @@ func SaveSupply(db *sql.DB, coins []sdk.Coin, height int64) error {
 	}
 
 	stmt = stmt[:len(stmt)-1]
-	fmt.Println(stmt)
 	_, err := db.Exec(stmt, params...)
 	if err != nil {
 		return fmt.Errorf("error while storing supply: %s", err)

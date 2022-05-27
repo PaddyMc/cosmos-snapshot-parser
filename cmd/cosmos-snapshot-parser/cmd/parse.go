@@ -14,6 +14,13 @@ import (
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	ibctransfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	"github.com/neilotoole/errgroup"
+
+	//	gammtypes "github.com/osmosis-labs/osmosis/v7/x/gamm/types"
+	//	incentivestypes "github.com/osmosis-labs/osmosis/v7/x/incentives/types"
+	//	lockuptypes "github.com/osmosis-labs/osmosis/v7/x/lockup/types"
+	//	pooltypes "github.com/osmosis-labs/osmosis/v7/x/pool-incentives/types"
+	//	superfluidtypes "github.com/osmosis-labs/osmosis/v7/x/superfluid/types"
+	//	txfeestypes "github.com/osmosis-labs/osmosis/v7/x/txfees/types"
 	"github.com/plural-labs/cosmos-snapshot-parser/parser"
 	"github.com/spf13/cobra"
 )
@@ -29,6 +36,14 @@ func parseCmd() *cobra.Command {
 			var err error
 			errs.Go(func() error {
 				interfaceRegistry := ct.NewInterfaceRegistry()
+
+				// The marshaler is defined here, as each chain has
+				// their own custom proto types needed for
+				// when we unmarshal transactions from
+				// a block.
+				// XXX: should we have one 'parse' command per chain?
+
+				// Default cosmos codec
 				authtypes.RegisterInterfaces(interfaceRegistry)
 				banktypes.RegisterInterfaces(interfaceRegistry)
 				distrtypes.RegisterInterfaces(interfaceRegistry)
@@ -39,6 +54,15 @@ func parseCmd() *cobra.Command {
 				upgradetypes.RegisterInterfaces(interfaceRegistry)
 				ibctransfertypes.RegisterInterfaces(interfaceRegistry)
 				cryptocodec.RegisterInterfaces(interfaceRegistry)
+
+				// Default osmo codec
+				//gammtypes.RegisterInterfaces(interfaceRegistry)
+				//incentivestypes.RegisterInterfaces(interfaceRegistry)
+				//lockuptypes.RegisterInterfaces(interfaceRegistry)
+				//superfluidtypes.RegisterInterfaces(interfaceRegistry)
+				//pooltypes.RegisterInterfaces(interfaceRegistry)
+				//txfeestypes.RegisterInterfaces(interfaceRegistry)
+
 				marshaler := codec.NewProtoCodec(interfaceRegistry)
 				if err = parser.Parse(
 					accountPrefix,

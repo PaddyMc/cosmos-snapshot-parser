@@ -1,3 +1,4 @@
+/*
 CREATE TABLE validator_signing_info
 (
     validator_address     TEXT                        NOT NULL PRIMARY KEY,
@@ -18,3 +19,4 @@ CREATE TABLE slashing_params
     CHECK (one_row_id)
 );
 CREATE INDEX slashing_params_height_index ON slashing_params (height);
+*/

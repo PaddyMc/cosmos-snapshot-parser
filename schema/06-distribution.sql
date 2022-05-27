@@ -5,7 +5,7 @@ CREATE TYPE DEC_COIN AS
 );
 
 /* ---- PARAMS ---- */
-
+/*
 CREATE TABLE distribution_params
 (
     one_row_id BOOLEAN NOT NULL DEFAULT TRUE PRIMARY KEY,
@@ -15,6 +15,7 @@ CREATE TABLE distribution_params
 );
 CREATE INDEX distribution_params_height_index ON distribution_params (height);
 
+*/
 
 /* ---- COMMUNITY POOL ---- */
 
@@ -26,3 +27,11 @@ CREATE TABLE community_pool
     CONSTRAINT one_row_uni CHECK (one_row_id)
 );
 CREATE INDEX community_pool_height_index ON community_pool (height);
+
+CREATE TABLE validator_rewards
+(
+    height BIGINT  NOT NULL,
+    denom  TEXT,
+    amount TEXT,
+    validator_address TEXT
+);

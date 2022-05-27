@@ -10,6 +10,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
+	distrkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	"github.com/rs/zerolog/log"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
@@ -39,7 +40,7 @@ func Parse(
 		BankKeeper,
 		StakingKeeper,
 		_,
-		_,
+		DistrKeeper,
 		_,
 		keys := CreateKeepers(marshaler)
 
@@ -62,6 +63,7 @@ func Parse(
 		AccountKeeper,
 		BankKeeper,
 		StakingKeeper,
+		DistrKeeper,
 	)
 
 	return nil
@@ -76,6 +78,7 @@ func strat(
 	AccountKeeper *authkeeper.AccountKeeper,
 	BankKeeper *bankkeeper.BaseKeeper,
 	StakingKeeper *stakingkeeper.Keeper,
+	DistrKeeper *distrkeeper.Keeper,
 ) error {
 	ctx := sdk.NewContext(
 		appStore,
@@ -120,6 +123,7 @@ func strat(
 		// fmt.Println(paramsd)
 
 		GetAndSaveBlockData(blockStore, psql, marshaler, bh)
+		GetAndSaveValidatorRewards(ctx, *DistrKeeper, psql, bh)
 		GetAndSaveSupply(ctx, *BankKeeper, psql, bh)
 		GetAndSaveValidatorPower(ctx, StakingKeeper, psql, bh)
 

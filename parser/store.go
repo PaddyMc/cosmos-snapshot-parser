@@ -39,7 +39,9 @@ func LoadDataStores(dbDir string, keys map[string]*types.KVStoreKey) (
 	}
 	// Get the application store from a directory
 	appDB, err := db.NewGoLevelDBWithOpts("application", dbDir, &o)
-	appStore = rootmulti.NewStore(appDB)
+	appStore = rootmulti.NewStore(appDB,
+		nil,
+	)
 	if err != nil {
 		panic(err)
 	}
