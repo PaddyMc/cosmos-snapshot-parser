@@ -19,7 +19,7 @@ connect-db:
 # Deploy the schema NOTE: this needs to be run before the parser starts
 SCHEMADIR = ./schema
 deploy-schema: 
-	@for f in $(shell ls ${SCHEMADIR}); do psql "postgresql://plural:plural@localhost:5432/chain" -f ${SCHEMADIR}/$${f}; done
+	@for f in $(shell ls ${SCHEMADIR}); do psql "postgresql://plurallabs:GPBNV1Ufg7vq9xkuBOCc@135.181.252.91:5433/parser" -f ${SCHEMADIR}/$${f}; done
 .PHONY: deploy-schema
 
 install: go.sum 

@@ -5,9 +5,13 @@ import (
 	ct "github.com/cosmos/cosmos-sdk/codec/types"
 	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
+	vestingtypes "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
+	authztypes "github.com/cosmos/cosmos-sdk/x/authz"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	crisistypes "github.com/cosmos/cosmos-sdk/x/crisis/types"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	evidencetypes "github.com/cosmos/cosmos-sdk/x/evidence/types"
+	feegranttypes "github.com/cosmos/cosmos-sdk/x/feegrant"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
@@ -15,13 +19,13 @@ import (
 	ibctransfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	"github.com/neilotoole/errgroup"
 
+	"github.com/PaddyMc/cosmos-snapshot-parser/parser"
 	gammtypes "github.com/osmosis-labs/osmosis/v7/x/gamm/types"
 	incentivestypes "github.com/osmosis-labs/osmosis/v7/x/incentives/types"
 	lockuptypes "github.com/osmosis-labs/osmosis/v7/x/lockup/types"
 	pooltypes "github.com/osmosis-labs/osmosis/v7/x/pool-incentives/types"
 	superfluidtypes "github.com/osmosis-labs/osmosis/v7/x/superfluid/types"
 	txfeestypes "github.com/osmosis-labs/osmosis/v7/x/txfees/types"
-	"github.com/PaddyMc/cosmos-snapshot-parser/parser"
 	"github.com/spf13/cobra"
 )
 
@@ -45,13 +49,17 @@ func parseCmd() *cobra.Command {
 
 				// Default cosmos codec
 				authtypes.RegisterInterfaces(interfaceRegistry)
+				authztypes.RegisterInterfaces(interfaceRegistry)
 				banktypes.RegisterInterfaces(interfaceRegistry)
+				crisistypes.RegisterInterfaces(interfaceRegistry)
 				distrtypes.RegisterInterfaces(interfaceRegistry)
 				evidencetypes.RegisterInterfaces(interfaceRegistry)
 				govtypes.RegisterInterfaces(interfaceRegistry)
 				slashingtypes.RegisterInterfaces(interfaceRegistry)
 				stakingtypes.RegisterInterfaces(interfaceRegistry)
 				upgradetypes.RegisterInterfaces(interfaceRegistry)
+				feegranttypes.RegisterInterfaces(interfaceRegistry)
+				vestingtypes.RegisterInterfaces(interfaceRegistry)
 				ibctransfertypes.RegisterInterfaces(interfaceRegistry)
 				cryptocodec.RegisterInterfaces(interfaceRegistry)
 
