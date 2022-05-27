@@ -16,7 +16,7 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmstore "github.com/tendermint/tendermint/store"
 
-	"github.com/plural-labs/cosmos-snapshot-parser/database"
+	"github.com/PaddyMc/cosmos-snapshot-parser/database"
 )
 
 func Parse(
@@ -84,22 +84,28 @@ func strat(
 		appStore,
 		tmproto.Header{ChainID: ""},
 		true,
+		// TODO: fix this error...
 		server.ZeroLogWrapper{log.Logger},
 	)
 
 	blockHeight := blockStore.Height()
-	fmt.Print(blockStore.Size())
+	// Does this return the correct value?
+	// fmt.Print(blockStore.Size())
 
 	// TODO: fail gracefully here...
 	//if pruning.KeepRecent < numOfBlocksToParse {
 	//	panic("no enough blocks mate...")
 	//}
 
+	// NOTE: We can optimise here using threads, for
+	// v1 (MVP) we run synchronously
+
 	// We load the accounts first...
 	GetAndSaveAccounts(ctx, AccountKeeper, psql)
 
 	// Then we get the validators at the highest height
 	GetAndSaveValidators(ctx, StakingKeeper, psql, blockHeight)
+	GetAndSaveValidatorCommission(ctx, StakingKeeper, psql, blockHeight)
 
 	// wow, such for loop...
 	i := uint64(0)
@@ -122,9 +128,14 @@ func strat(
 		// paramsd := DistrKeeper.GetParams(ctx)
 		// fmt.Println(paramsd)
 
+		// This is the basic strat for v1 for each height:
+		// 	- Get Blocks
 		GetAndSaveBlockData(blockStore, psql, marshaler, bh)
+		//	- Get Validator rewards
 		GetAndSaveValidatorRewards(ctx, *DistrKeeper, psql, bh)
+		//	- Get Supply
 		GetAndSaveSupply(ctx, *BankKeeper, psql, bh)
+		//	- Get Validator Power
 		GetAndSaveValidatorPower(ctx, StakingKeeper, psql, bh)
 
 		i++

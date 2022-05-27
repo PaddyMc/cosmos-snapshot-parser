@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	distrkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
-	"github.com/plural-labs/cosmos-snapshot-parser/database"
+	"github.com/PaddyMc/cosmos-snapshot-parser/database"
 )
 
 func GetAndSaveValidatorRewards(

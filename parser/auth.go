@@ -7,7 +7,7 @@ import (
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/plural-labs/cosmos-snapshot-parser/database"
+	"github.com/PaddyMc/cosmos-snapshot-parser/database"
 )
 
 func GetAndSaveAccounts(

@@ -15,13 +15,13 @@ import (
 	ibctransfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	"github.com/neilotoole/errgroup"
 
-	//	gammtypes "github.com/osmosis-labs/osmosis/v7/x/gamm/types"
-	//	incentivestypes "github.com/osmosis-labs/osmosis/v7/x/incentives/types"
-	//	lockuptypes "github.com/osmosis-labs/osmosis/v7/x/lockup/types"
-	//	pooltypes "github.com/osmosis-labs/osmosis/v7/x/pool-incentives/types"
-	//	superfluidtypes "github.com/osmosis-labs/osmosis/v7/x/superfluid/types"
-	//	txfeestypes "github.com/osmosis-labs/osmosis/v7/x/txfees/types"
-	"github.com/plural-labs/cosmos-snapshot-parser/parser"
+	gammtypes "github.com/osmosis-labs/osmosis/v7/x/gamm/types"
+	incentivestypes "github.com/osmosis-labs/osmosis/v7/x/incentives/types"
+	lockuptypes "github.com/osmosis-labs/osmosis/v7/x/lockup/types"
+	pooltypes "github.com/osmosis-labs/osmosis/v7/x/pool-incentives/types"
+	superfluidtypes "github.com/osmosis-labs/osmosis/v7/x/superfluid/types"
+	txfeestypes "github.com/osmosis-labs/osmosis/v7/x/txfees/types"
+	"github.com/PaddyMc/cosmos-snapshot-parser/parser"
 	"github.com/spf13/cobra"
 )
 
@@ -56,12 +56,12 @@ func parseCmd() *cobra.Command {
 				cryptocodec.RegisterInterfaces(interfaceRegistry)
 
 				// Default osmo codec
-				//gammtypes.RegisterInterfaces(interfaceRegistry)
-				//incentivestypes.RegisterInterfaces(interfaceRegistry)
-				//lockuptypes.RegisterInterfaces(interfaceRegistry)
-				//superfluidtypes.RegisterInterfaces(interfaceRegistry)
-				//pooltypes.RegisterInterfaces(interfaceRegistry)
-				//txfeestypes.RegisterInterfaces(interfaceRegistry)
+				gammtypes.RegisterInterfaces(interfaceRegistry)
+				incentivestypes.RegisterInterfaces(interfaceRegistry)
+				lockuptypes.RegisterInterfaces(interfaceRegistry)
+				superfluidtypes.RegisterInterfaces(interfaceRegistry)
+				pooltypes.RegisterInterfaces(interfaceRegistry)
+				txfeestypes.RegisterInterfaces(interfaceRegistry)
 
 				marshaler := codec.NewProtoCodec(interfaceRegistry)
 				if err = parser.Parse(

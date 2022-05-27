@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 
-	"github.com/plural-labs/cosmos-snapshot-parser/database"
+	"github.com/PaddyMc/cosmos-snapshot-parser/database"
 )
 
 func GetAndSaveSupply(

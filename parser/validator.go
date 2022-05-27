@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
-	"github.com/plural-labs/cosmos-snapshot-parser/database"
+	"github.com/PaddyMc/cosmos-snapshot-parser/database"
 )
 
 func GetAndSaveValidators(
