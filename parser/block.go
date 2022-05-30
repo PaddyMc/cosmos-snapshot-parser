@@ -28,7 +28,8 @@ func GetAndSaveBlockData(
 		// correctly initialized
 		transaction, err := UnmarshalTx(marshaler, msg)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
+			continue
 		}
 		err = database.SaveTx(
 			db,

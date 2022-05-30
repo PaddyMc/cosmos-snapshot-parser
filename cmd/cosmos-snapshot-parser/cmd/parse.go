@@ -17,15 +17,20 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	ibctransfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
+	ibctypes "github.com/cosmos/ibc-go/v2/modules/core/types"
 	"github.com/neilotoole/errgroup"
 
 	"github.com/PaddyMc/cosmos-snapshot-parser/parser"
-	gammtypes "github.com/osmosis-labs/osmosis/v7/x/gamm/types"
-	incentivestypes "github.com/osmosis-labs/osmosis/v7/x/incentives/types"
-	lockuptypes "github.com/osmosis-labs/osmosis/v7/x/lockup/types"
-	pooltypes "github.com/osmosis-labs/osmosis/v7/x/pool-incentives/types"
-	superfluidtypes "github.com/osmosis-labs/osmosis/v7/x/superfluid/types"
-	txfeestypes "github.com/osmosis-labs/osmosis/v7/x/txfees/types"
+	balancertypes "github.com/osmosis-labs/osmosis/v8/x/gamm/pool-models/balancer"
+
+	//	stableswaptypes "github.com/osmosis-labs/osmosis/v8/x/gamm/pool-models/stableswap"
+	gammtypes "github.com/osmosis-labs/osmosis/v8/x/gamm/types"
+	incentivestypes "github.com/osmosis-labs/osmosis/v8/x/incentives/types"
+	lockuptypes "github.com/osmosis-labs/osmosis/v8/x/lockup/types"
+	pooltypes "github.com/osmosis-labs/osmosis/v8/x/pool-incentives/types"
+	superfluidtypes "github.com/osmosis-labs/osmosis/v8/x/superfluid/types"
+	txfeestypes "github.com/osmosis-labs/osmosis/v8/x/txfees/types"
+
 	"github.com/spf13/cobra"
 )
 
@@ -44,7 +49,7 @@ func parseCmd() *cobra.Command {
 				// The marshaler is defined here, as each chain has
 				// their own custom proto types needed for
 				// when we unmarshal transactions from
-				// a block.
+				// a block and get data from the store.
 				// XXX: should we have one 'parse' command per chain?
 
 				// Default cosmos codec
@@ -61,6 +66,7 @@ func parseCmd() *cobra.Command {
 				feegranttypes.RegisterInterfaces(interfaceRegistry)
 				vestingtypes.RegisterInterfaces(interfaceRegistry)
 				ibctransfertypes.RegisterInterfaces(interfaceRegistry)
+				ibctypes.RegisterInterfaces(interfaceRegistry)
 				cryptocodec.RegisterInterfaces(interfaceRegistry)
 
 				// Default osmo codec
@@ -70,8 +76,12 @@ func parseCmd() *cobra.Command {
 				superfluidtypes.RegisterInterfaces(interfaceRegistry)
 				pooltypes.RegisterInterfaces(interfaceRegistry)
 				txfeestypes.RegisterInterfaces(interfaceRegistry)
+				balancertypes.RegisterInterfaces(interfaceRegistry)
+				//			stableswaptypes.RegisterInterfaces(interfaceRegistry)
 
+				// Create the codec with every message needed
 				marshaler := codec.NewProtoCodec(interfaceRegistry)
+
 				if err = parser.Parse(
 					accountPrefix,
 					dataDir,

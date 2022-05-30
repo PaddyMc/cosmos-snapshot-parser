@@ -25,17 +25,25 @@ cosmos-snapshot-parser parse \
 
 #### Account Prefix (--account-prefix)
 
+---
+
 This is the account prefix for the chain state that is being parser (e.g osmo).
 
 #### Connection String (--connection-string)
+
+---
 
 The connection string for the psql database (e.g postgresql://plural:plural@localhost:5432/chain?sslmode=disable)
 
 #### Blocks (--blocks)
 
+---
+
 The number of blocks to search backward and parse into a relational database. This widly depends on the pruning config of the node that is being parse. The default pruning configuration of a cosmos node keeps the last 362880 heights. (e.g 362880)
 
 #### Database directory (--db-dir)
+
+---
 
 The directory of the `application.db` and `blockstore.db` of the cosmos-sdk based application. Use the absolute path to avoid any file location issues.
 

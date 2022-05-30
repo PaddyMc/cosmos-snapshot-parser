@@ -989,6 +989,8 @@ github.com/osmosis-labs/ibc-go/v2 v2.0.2-osmo h1:XyYyDTjPIu7qX2nhQp9mboj7Pa9FEnj
 github.com/osmosis-labs/ibc-go/v2 v2.0.2-osmo/go.mod h1:XUmW7wmubCRhIEAGtMGS+5IjiSSmcAwihoN/yPGd6Kk=
 github.com/osmosis-labs/osmosis/v7 v7.3.0 h1:9CrUh2drxa0IKARgI5Cy6KzDHximeD3TxcNivN1TKLI=
 github.com/osmosis-labs/osmosis/v7 v7.3.0/go.mod h1:uyrTFKD4w9hq0EY1PfvCmWNTtiO8X7c0ivRisBKrOA0=
+github.com/osmosis-labs/osmosis/v8 v8.0.1 h1:WTlCYtwBVa9h3jjDHSwWlQXvU26WfXtWyozWkaHQ8FI=
+github.com/osmosis-labs/osmosis/v8 v8.0.1/go.mod h1:YJRFWe00FKQIg78THudPTRi645MsrloEkujgckGi+1s=
 github.com/otiai10/copy v1.2.0/go.mod h1:rrF5dJ5F0t/EWSYODDu4j9/vEeYHMkc8jt0zJChqQWw=
 github.com/otiai10/copy v1.7.0 h1:hVoPiN+t+7d2nzzwMiDHPSOogsWAStewq3TwU05+clE=
 github.com/otiai10/copy v1.7.0/go.mod h1:rmRl6QPdJj6EiUqXQ/4Nn2lLXoNQjFCQbbNrxgc/t3U=

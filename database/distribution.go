@@ -14,10 +14,10 @@ func SaveValidatorRewards(
 	coins distrtypes.ValidatorOutstandingRewards,
 	height int64,
 ) error {
-	stmt := `INSERT INTO validator_rewards (denom, amount, height, validator_address) VALUES`
-	var params []interface{}
-	for i, coin := range coins.Rewards {
-		pi := i * 4
+	for _, coin := range coins.Rewards {
+		stmt := `INSERT INTO validator_rewards (denom, amount, height, validator_address) VALUES`
+		var params []interface{}
+		pi := 0
 		stmt += fmt.Sprintf("($%d,$%d,$%d,$%d),", pi+1, pi+2, pi+3, pi+4)
 		params = append(params, coin.Denom, coin.Amount.String(), height, validatorAddress)
 		stmt = stmt[:len(stmt)-1]
